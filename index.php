@@ -1,5 +1,4 @@
 <?php
-  require_once('books.php');
   require_once('functions.php');
 ?>
 
@@ -14,7 +13,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="siimple.min.css">
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -22,11 +21,37 @@
     <![endif]-->
 
     <p>The book you're looking for is: </p>
+    <?php
+      $booksJson = file_exists('books.json') ? file_get_contents('books.json') : null;
+      if($booksJson != null){
+        $books = json_decode($booksJson, true);
+        
+        if (isset($_GET['title'])) {
+          echo '<p>Looking for: <b>' . $_GET['title'] . '</b></p>';
+          if (bookingBooks($books, $_GET['title'])) {
+            echo "Booked!";
+            updateBooks($books);
+          } else {
+            echo "The book is not available";
+          }
+        } else {
+          echo '<p>You are not looking for a book?</p>';
+        }
+    ?>
     <ul>
-      <?php foreach ($books as $book): ?>
-        <li><?php echo printableTitle($book) ?></li>
-      <?php endforeach;?>
+      <?php foreach($books as $book) : ?>
+        <li>
+          <a href="?title=<?php echo $book['title']; ?>">
+            <?php echo printableTitle($book); ?>
+          </a>
+        </li>
+      <?php endforeach; ?>
     </ul>
+    <?php
+      } else {
+        echo "File books.json does not exists!";
+      }
+    ?>
     
     <script src="" async defer></script>
   </body>
