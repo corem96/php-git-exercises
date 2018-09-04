@@ -1,3 +1,3 @@
-# php-git-exercises - Clean Code & OOP
+# php-git-exercises - Desing Patterns
 
-This branch is for explore the concepts of clean code, OOP and design patterns using the bookstore example
+The purpose of this branch is for applying the most common design patterns used in PHP
