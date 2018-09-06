@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Stilu';
+  src: url('../font/Stilu-Regular.otf');
+  font-size: 12px;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #474747;
+  font-family: 'Stilu';
+}
+
+h1 {
+  padding: 1em;
+  margin-top: 0;
+  color: #419aff;
+  background-color: #474747;
+  border-bottom: 1px solid #383838;
+}
+
+.box{
+  margin: 1em;
+  padding: 2em;
+  background: #f3f3f3;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+}
