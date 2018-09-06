@@ -10,22 +10,34 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="spectre.css">
+    <link rel="stylesheet" href="./assets/css/spectre.css">
   </head>
   <body>
     <h1><?php echo $pageTitle; ?></h1>
     <div class="box">
       <ul>
       <?php
-        // var_dump(checkIfValid($customer1, [$book1]));
-        // $customer2 = new Customer(102, 'jose', 'pablo', 'jose.pablo@mail.com');
-        // var_dump(checkIfValid($customer2, [$book1]));
-        // $book1->isAvailable(true); //this code runs ok
-        // echo $book1;
+        $books = [
+          ['title' => '1984', 'price' => 8.15],
+          ['title' => 'Colors for Kids', 'price' => 1.7],
+          ['title' => 'It', 'price' => 65.20] 
+        ];
+        $percentage = 0.16;
+        $addTaxes = function(array $book, $index) use ($percentage) {
+          if(isset($book['price'])) {
+            $book['price'] += round($percentage * $book['price'], 2);
+          }
+        };
+        $percentage = 100000;
         
-        var_dump($basic->getId());
-        var_dump($premium->getId());
+        foreach ($books as $index => $book) {
+          $addTaxes($book, $index, 0.16);
+        }
+        var_dump($books);
         
+
+        array_walk($books, $addTaxes);
+        var_dump($books);
       ?>
       </ul>
     </div>

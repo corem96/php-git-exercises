@@ -10,7 +10,7 @@
     protected $surname;
     protected $email;
 
-    public function __construct(int $id, string $firstname, string $surname, string $email)
+    public function __construct(int $id = null, string $firstname, string $surname, string $email)
     {
       $this->firstname = $firstname;
       $this->surname = $surname;

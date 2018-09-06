@@ -8,10 +8,10 @@ trait Unique {
   private static $lastId = 0;
   protected $id;
 
-  public function setId(int $id)
+  public function setId(int $id = null)
   {
-    if (empty($id) || $id == null) {
-      throw new InvalidException('Id cannot be negative or null');
+    if (empty($id)) {
+      // throw new InvalidException('Id cannot be negative nor null');
       
       $this->id = ++self::$lastId;
     } else {
