@@ -17,27 +17,13 @@
     <div class="box">
       <ul>
       <?php
-        $books = [
-          ['title' => '1984', 'price' => 8.15],
-          ['title' => 'Colors for Kids', 'price' => 1.7],
-          ['title' => 'It', 'price' => 65.20] 
-        ];
-        $percentage = 0.16;
-        $addTaxes = function(array $book, $index) use ($percentage) {
-          if(isset($book['price'])) {
-            $book['price'] += round($percentage * $book['price'], 2);
-          }
-        };
-        $percentage = 100000;
-        
-        foreach ($books as $index => $book) {
-          $addTaxes($book, $index, 0.16);
-        }
-        var_dump($books);
-        
+      foreach ($rows as $row) {
+        print("<pre>".print_r($row, true)."</pre>");
+      }
 
-        array_walk($books, $addTaxes);
-        var_dump($books);
+      var_dump($result);
+      $dbError = $db->errorInfo()[2];
+      print("<pre>" . print_r($dbError, true) . "</pre>");
       ?>
       </ul>
     </div>

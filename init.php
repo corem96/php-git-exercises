@@ -23,7 +23,7 @@
   spl_autoload_register('autoloader');
 
   $pageTitle = 'PHP Clean Code with OOP';
-  $config = Config::getInstance()->get('db');
+  $dbConfig = Config::getInstance()->get('db');
 
   $db = new PDO(
     'mysql:host=127.0.0.1;dbname=financial',
@@ -33,4 +33,9 @@
   
   $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   $rows = $db->query('SELECT * FROM book ORDER BY title');
+
+  $query = "INSERT INTO Book(isbn, title, author, stock, price) VALUES('9788187981954', 'Peter Pan', 'J. M. Barrie', 28, 56.34)";
+  
+  $result = $db->exec($query);
+
 ?>
