@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Stilu';
-  src: url('../font/Stilu-Regular.otf');
+  font-family: 'Cabin';
+  src: url('../font/Cabin-Regular.ttf');
   font-size: 12px;
 }
 
@@ -9,7 +9,7 @@ body{
   padding: 0;
   background: #fff;
   color: #474747;
-  font-family: 'Stilu';
+  font-family: 'Cabin';
 }
 
 h1 {
