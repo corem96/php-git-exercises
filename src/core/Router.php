@@ -78,7 +78,7 @@ class Router {
             }
         }
 
-        $params = this->executeParams($route, $path);
+        $params = $this->executeParams($route, $path);
         return call_user_func_array([$controller, $info['method']], $params);
     }
     
