@@ -13,15 +13,19 @@ class Book{
   
 
   /**
-   * Get the value of id
-   */ 
+   * Returns value of ID
+   *
+   * @return integer
+   */
   public function getId() : int
   {
     return $this->id;
   }
 
   /**
-   * Get the value of isbn
+   * Returns value of ISBN
+   *
+   * @return string
    */ 
   public function getIsbn() : string
   {
@@ -29,31 +33,39 @@ class Book{
   }
 
   /**
-   * Get the value of title
-   */ 
+   * Returns value of Title
+   *
+   * @return string
+   */
   public function getTitle() : string
   {
     return $this->title;
   }
 
   /**
-   * Get the value of author
-   */ 
+   * Returns value of Author
+   *
+   * @return string
+   */
   public function getAuthor() : string
   {
     return $this->author;
   }
 
   /**
-   * Get the value of stock
-   */ 
+   * Returns value of Stock
+   *
+   * @return integer
+   */
   public function getStock() : int
   {
     return $this->stock;
   }
 
   /**
-   * Get the value of price
+   * Returns value of Price
+   *
+   * @return float
    */ 
   public function getPrice() : float
   {
@@ -61,7 +73,10 @@ class Book{
   }
 
   /**
-   * Get a copy of a given title
+   * Returns true when stock value is avobe 0 and reduces stock by one.
+   * Returns false when stock is equal or less than 0
+   *
+   * @return boolean
    */
   public function getCopy() : bool
   {
@@ -73,6 +88,11 @@ class Book{
     }
   }
 
+  /**
+   * Increases stock by one
+   *
+   * @return void
+   */
   public function addCopy()
   {
     $this->stock++;
