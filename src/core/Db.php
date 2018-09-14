@@ -2,6 +2,7 @@
 namespace Bookstore\Core;
 
 use PDO;
+use Bookstore\Core\Config;
 
 Class Db{
   private static $instance;
@@ -9,6 +10,7 @@ Class Db{
   private static function connect() : PDO
   {
     $dbConfig = Config::getInstance()->get('db');
+
     return new PDO(
       'mysql:host=127.0.0.1;dbname=bookstore',
       $dbConfig['user'],
@@ -17,13 +19,13 @@ Class Db{
   }
 
   public static function getInstance()
-    {
-      if(self::$instance == null){
-        self::$instance = self::connect();
-      }
-
-      return self::$instance;
+  {
+    if(self::$instance == null){
+      self::$instance = self::connect();
     }
+
+    return self::$instance;
+  }
 }
 
 ?>

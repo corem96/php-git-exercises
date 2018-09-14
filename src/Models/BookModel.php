@@ -5,6 +5,7 @@ namespace Bookstore\Models;
 use Bookstore\Domain\Book;
 use Bookstore\Exceptions\DbException;
 use Bookstore\Exceptions\NotFoundException;
+use PDO;
 
 
 class BookModel extends AbstractModel{
