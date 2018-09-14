@@ -19,6 +19,12 @@ class SaleModel extends AbstractModel
     return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
   }
 
+  /**
+   * Returns all books and their info from a particular sale
+   *
+   * @param integer $saleId
+   * @return Sale
+   */
   public function get(int $saleId) : Sale
   {
     $query = "SELECT * FROM sale WHERE id = :id";
@@ -45,6 +51,49 @@ class SaleModel extends AbstractModel
     $sale->setBooks($books);
 
     return $sale;
+  }
+
+  /**
+   * Inserts a new sale then obtains the customer ID and last inserted sale ID
+   * and proceed to insert each book and amount for that specific sale.
+   * If an error is raised it performs a rollback and throws the error info
+   *
+   * @param Sale $sale
+   * @return void
+   */
+  public function create(Sale $sale)
+  {
+    $this->db->beginTransaction();
+
+    $query = "INSERT INTO sale (customer_id, date)
+      VALUES(:id, Now())";
+
+    $sth = $this->bd->prepare($query);
+
+    if(!$sth->execute(['id' => $sale->getCustomerId()])){
+      $this->bd->rollback();
+      throw new DbException($sth->errorInfo()[2]);
+    }
+
+    $saleId = $this->bd->lastInsertId();
+
+    $query = "SELECT * FROM sale_book(sale_id, book_id, amount)
+      VALUES(:sale, :book, :amount)";
+
+    $sth = $this->bd->prepare($query);
+    $sth->bindValue('sale', $saleId);
+
+    foreach ($sale->getBooks() as $bookId => $amount) {
+      $sth->bindValue('book', $book);
+      $sth->bindValue('amount', $amount);
+      
+      if(!$sth->execute()){
+        $this->bd->rollBack();
+        throw new DbException($sth->errorInfo()[2]);
+      }
+    }
+
+    $this->bd->commit();
   }
 
 }
