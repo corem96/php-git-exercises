@@ -1,8 +1,10 @@
 <?php
 namespace Bookstore\Models;
 
+use PDO;
+
 abstract class AbstractModel {
-  private $db;
+  protected $db;
 
   public function __construct(PDO $db)
   {
