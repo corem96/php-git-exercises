@@ -1,0 +1,19 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    {% if errorMessage is defined %}
+        <strong>{{ errorMessage }}</strong>
+    {% endif %}
+
+    <form action="/login" method="post">
+        <label for="email">Email</label>
+        <input type="text" name="email">
+        <input type="submit">
+    </form>
+    
+{% endblock %}
+
