@@ -5,6 +5,9 @@ use Bookstore\Domain\Customer;
 use Booksore\Domain\Customer\CustomerFactory;
 use Bookstore\Exceptions\NotFoundException;
 
+/**
+ * An extended Abstract Class for managin customer data and business logic
+ */
 class CustomerModel extends AbstractModel {
   public function get(int $userId) : Customer
   {

@@ -2,6 +2,9 @@
 
 namespace Bookstore\Core;
 
+/**
+ * A concrete class that manage all requests submited
+ */
 class Request {
   const GET = 'GET';
   const POST = 'POST';
@@ -38,6 +41,11 @@ class Request {
     return $this->method;
   }
 
+  /**
+   * Return true if the verb of THE request is POST
+   *
+   * @return boolean
+   */
   public function isPost() : bool
   {
     return $this->method === self::POST;
@@ -48,6 +56,11 @@ class Request {
     return $this->method === self::GET;
   }
 
+  /**
+   * Returns a filtered map of params included in the current request
+   *
+   * @return FilteredMap
+   */
   public function getParams() : FilteredMap
   {
     return $this->params;

@@ -22,7 +22,7 @@ abstract class AbstractController {
     protected $log;
 
     /**
-     * Constructor of the AbstracController class
+     * Constructor of the AbstractController class
      *
      * @param Request $request
      */
@@ -49,5 +49,10 @@ abstract class AbstractController {
     public function setCustomerId(int $customerId)
     {
         $this->customerId = $customerId;
+    }
+
+    protected function render(string $template, array $params)
+    {
+        return $this->view->loadTemplate($template)->render($params);
     }
 }
