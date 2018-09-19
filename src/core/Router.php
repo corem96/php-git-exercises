@@ -21,7 +21,7 @@ class Router {
     public function route(Request $request) : string
     {
         $path = $request->getPath();
-
+        
         foreach ($this->routeMap as $route => $info) {
             $regexRoute = $this->getRegexRoute($route, $info);
             
@@ -29,9 +29,9 @@ class Router {
                 return $this->executeController($route, $path, $info, $request);
             }
         }
-
+        
         $errorController = new ErrorController($request);
-
+        
         return $errorController->notFound();
     }
 
@@ -39,7 +39,7 @@ class Router {
     {
         if(isset($info['params'])){
             foreach($info['params'] as $name => $type){
-                $route = str_replace(':' . $name . self::regexPatterns[$type], $route);
+                $route = str_replace(':' . $name, self::$regexPatterns[$type], $route);
             }
         }
 
@@ -63,7 +63,7 @@ class Router {
         return $params;
     }
 
-    private function executeController(string $route, string $path, string $info, Request $request) : string
+    private function executeController(string $route, string $path, array $info, Request $request) : string
     {
         $controllerName = 'Bookstore\Controllers\\' .$info['controller'] . 'Controller';
         $controller = new ControllerName($request);
@@ -78,7 +78,8 @@ class Router {
             }
         }
 
-        $params = $this->executeParams($route, $path);
+        $params = $this->extractParams($route, $path);
+        
         return call_user_func_array([$controller, $info['method']], $params);
     }
     

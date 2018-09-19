@@ -5,9 +5,14 @@ use Bookstore\Core\Request;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+
 $router = new Router();
-$response = $router->route(new Request());
-echo $esponse;
+$req = new Request();
+
+print("<pre>".print_r($req,true)."</pre>");
+
+// $response = $router->route($req);
+// echo $response;
 
 // $loader = new Twig_Loader_Filesystem(__DIR__ . '\views');
 // $twig = new Twig_Environment($loader);

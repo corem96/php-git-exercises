@@ -2,44 +2,74 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> {% block title %}{% endblock %} </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../assets/siimple.min.css">
-  </head>
-  <body>
-    <!--[if lt IE 7]>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> {% block title %}{% endblock %} </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/siimple.min.css">
+  <link rel="stylesheet" href="../assets/other.min.css">
+</head>
+
+<body>
+  <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="siimple-navbar sd-navbar--blue siimple-navbar--large">
+  <div class="siimple-navbar siimple-navbar--extra-large siimple-navbar--primary">
+    <div class="siimple-navbar-title">Bookstore.op</div>
+    <div class="siimple--float-right">
       <a class="siimple-navbar-item" href='/books'>Books</a>
       <a class="siimple-navbar-item" href='/sales'>Sales</a>
       <a class="siimple-navbar-item" href='/my-books'>My Books</a>
+      <!-- <div class="siimple-navbar-item">Profile</div> -->
+      <!-- <div class="siimple-navbar-item">Logout</div> -->
     </div>
+  </div>
 
-    <div style="padding: 15px">
-      <div class="sd-content siimple-content--large">
-        <div class="siimple-grid-row">
-          <div class="siimple-grid-col">
-            <form action="/search/" method="get">
-              <label for="title">Title</label>
-              <input type="text" name="title">
-      
-              <label for="author">Author</label>
-              <input type="text" name="author">
-      
-              <input type="submit" value="Search">
+  <div class="siimple-content siimple-content--extra-large">
+    <div class="siimple-grid">
+      <div class="siimple-grid-row">
+        <div class="siimple-grid-col siimple-grid-col--3">
+          <div class="sd-search-box">
+            <form action="/search/" method="get" class="siimple-form">
+              <div class="siimple-form-title">Search</div>
+              <div class="siimple-form-detail">What book do you want to find?</div>
+              <div class="siimple-form-field">
+                  <div class="siimple-form-field-label">Title</div>
+                  <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book title">
+              </div>
+              <div class="siimple-form-field">
+                  <div class="siimple-form-field-label">Author</div>
+                  <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book author">
+              </div>
+              <div class="siimple-form-field">
+                <input type="submit" value="Search" class="siimple-btn siimple-btn--blue">
+              </div>
             </form>
           </div>
-          <div class="siimple-grid-col siimple-grid-col--9 siimple-grid-col-sm--12 sd-column">
-            {% block content %}{% endblock %}
+        </div>
+
+        <div class="siimple-grid-col siimple-grid-col--9">
+          <div class="siimple-box siimple-box--navy">
+            <div class="siimple-box-title">Welcome to Bookstore.op</div>
+            <div class="siimple-box-subtitle">We have (almost) any book ever written</div>
+            <div class="siimple-box-detail">
+              <p>Bookstore.op is The Best bookstore arround the globe.</p>
+              <p>You will find tons and tons of e-books and epubs to purchase, rent and more!</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+  <div class="siimple-footer siimple-footer--extra-large siimple-footer--dark">
+    We use <strong>Siimple CSS</strong> to build this amazing page
+  </div>
+</body>
+
 </html>
