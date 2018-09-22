@@ -32,7 +32,7 @@ class Router {
         
         $errorController = new ErrorController($request);
         
-        return $errorController->notFound();
+        return $errorController->notFound($request->getPath());
     }
 
     private function getRegexRoute(string $route, array $info) : string
@@ -49,31 +49,30 @@ class Router {
     private function extractParams(string $route, string $path) : array
     {
         $params = [];
-
         $pathParts = explode('/', $path);
         $routeParts = explode('/', $route);
-
+        
         foreach ($routeParts as $key => $routePart) {
             if(strpos($routePart, ':' === 0)){
                 $name = substr($routePart, 1);
                 $params[$name] = $pathParts[$key + 1];
             }
         }
-
+        
         return $params;
     }
 
     private function executeController(string $route, string $path, array $info, Request $request) : string
     {
-        $controllerName = 'Bookstore\Controllers\\' .$info['controller'] . 'Controller';
-        $controller = new ControllerName($request);
+        $controllerName = 'Bookstore\Controllers\\' . $info['controller'] . 'Controller';
+        $controller = new $controllerName($request);
 
         if (isset($info['login']) && $info['login']) {
             if($request->getCookies()->has('user')){
                 $customerId = $request->getCookies()->get('user');
                 $controller->setCustomerId($customerId);
             } else {
-                $errorController = new ErrorController($request);
+                $errorController = new CustomerController($request);
                 return $errorController->login();
             }
         }

@@ -11,8 +11,8 @@ use Twig_Loader_FileSystem;
 use Monolog\Handler\StreamHandler;
 
 /**
- * An abstract controller class that manage configurations for db operations, views enviroments using Twig,
- * Loggin data into files and requests operations.
+ * An abstract controller class that manage configurations for db operations, views enviroment,
+ * Log data into files and requests operations.
  */
 abstract class AbstractController {
     protected $request;
@@ -22,7 +22,7 @@ abstract class AbstractController {
     protected $log;
 
     /**
-     * Constructor of the AbstractController class
+     * Constructor of the AbstractController class. Sets DB instance, twig environment and log file
      *
      * @param Request $request
      */
@@ -51,6 +51,13 @@ abstract class AbstractController {
         $this->customerId = $customerId;
     }
 
+    /**
+     * Page renderer using template and params to use within view
+     *
+     * @param string $template
+     * @param array $params
+     * @return twig
+     */
     protected function render(string $template, array $params)
     {
         return $this->view->loadTemplate($template)->render($params);

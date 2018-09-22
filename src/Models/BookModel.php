@@ -7,12 +7,14 @@ use Bookstore\Exceptions\DbException;
 use Bookstore\Exceptions\NotFoundException;
 use PDO;
 
-
+/**
+ * A Model class for fetching and presisting Book data
+ */
 class BookModel extends AbstractModel{
   const CLASSNAME = '\Bookstore\Domain\Book';
 
   /**
-   * Returns a single result of book by ID or a NotFoundException
+   * Returns a single Book result by ID or a NotFoundException
    *
    * @param integer $id
    * @return Book
