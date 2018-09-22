@@ -5,5 +5,11 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Error: {{ errorMessage }}</h2>
+<div class="siimple-box siimple-box--error">
+  <div class="siimple-box-title">Error!</div>
+  <div class="siimple-box-detail">
+    <p>{{ errorMessage }}</p>
+    <pre>{{ url }}</pre>
+  </div>
+</div>
 {% endblock %}

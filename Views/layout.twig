@@ -40,12 +40,12 @@
               <div class="siimple-form-title">Search</div>
               <div class="siimple-form-detail">What book do you want to find?</div>
               <div class="siimple-form-field">
-                  <div class="siimple-form-field-label">Title</div>
-                  <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book title">
+                <div class="siimple-form-field-label">Title</div>
+                <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book title">
               </div>
               <div class="siimple-form-field">
-                  <div class="siimple-form-field-label">Author</div>
-                  <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book author">
+                <div class="siimple-form-field-label">Author</div>
+                <input type="text" class="siimple-input siimple-input--fluid sd-search-box-input" placeholder="Book author">
               </div>
               <div class="siimple-form-field">
                 <input type="submit" value="Search" class="siimple-btn siimple-btn--blue">
@@ -55,18 +55,12 @@
         </div>
 
         <div class="siimple-grid-col siimple-grid-col--9">
-          <div class="siimple-box siimple-box--navy">
-            <div class="siimple-box-title">Welcome to Bookstore.op</div>
-            <div class="siimple-box-subtitle">We have (almost) any book ever written</div>
-            <div class="siimple-box-detail">
-              <p>Bookstore.op is The Best bookstore arround the globe.</p>
-              <p>You will find tons and tons of e-books and epubs to purchase, rent and more!</p>
-            </div>
-          </div>
+          {% block content %} {% endblock %}
         </div>
       </div>
     </div>
   </div>
+
   <div class="siimple-footer siimple-footer--extra-large siimple-footer--dark">
     We use <strong>Siimple CSS</strong> to build this amazing page
   </div>
