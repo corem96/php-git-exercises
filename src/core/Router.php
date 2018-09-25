@@ -2,6 +2,7 @@
 
 namespace Bookstore\Core;
 
+use Bookstore\Utils\DependencyInjector;
 use Bookstore\Controllers\ErrorController;
 use Bookstore\Controllers\CustomerController;
 

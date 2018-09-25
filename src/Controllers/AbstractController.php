@@ -2,13 +2,14 @@
 
 namespace Bookstore\Controllers;
 
-use Bookstore\Core\Config;
-use Bookstore\Core\Db;
-use Bookstore\Core\Request;
 use Monolog\Logger;
 use Twig_Environment;
+use Bookstore\Core\Db;
+use Bookstore\Core\Config;
+use Bookstore\Core\Request;
 use Twig_Loader_FileSystem;
 use Monolog\Handler\StreamHandler;
+use Bookstore\Utils\DependencyInjector;
 
 /**
  * An abstract controller class that manage configurations for db operations, views enviroment,
@@ -34,12 +35,12 @@ abstract class AbstractController {
         $this->di = $depinjector;
         $this->request = $request;
         
-        $this->db = $di->get('PDO');
-        $this->config = $di->get('Utils\Config');
-        $this->view = $di->get('Twig_Environment');
-        $this->log = $di->get('Logger');
+        $this->db = $depinjector->get('PDO');
+        $this->config = $depinjector->get('Utils\Config');
+        $this->view = $depinjector->get('Twig_Environment');
+        $this->log = $depinjector->get('Logger');
         
-        $this->customerId = $_COOKIE['id'];
+        $this->customerId = $_COOKIE['id'] ?? null;
     }
 
     /**
