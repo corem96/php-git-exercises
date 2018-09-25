@@ -16,28 +16,30 @@ use Monolog\Handler\StreamHandler;
  */
 abstract class AbstractController {
     protected $request;
+    protected $di;
     protected $db;
     protected $config;
     protected $view;
     protected $log;
+    protected $customerId;
 
     /**
-     * Constructor of the AbstractController class. Sets DB instance, twig environment and log file
-     *
+     * constructor of AbstractController that injects PDO, config, twig environment and logger dependencies.
+     * Also gets customer ID from cookie
+     * @param DependencyInjector $depinjector
      * @param Request $request
      */
-    public function __construct(Request $request)
+    public function __construct(DependencyInjector $depinjector, Request $request)
     {
+        $this->di = $depinjector;
         $this->request = $request;
-        $this->db = Db::getInstance();
-        $this->config = Config::getInstance();
-
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../views');
-        $this->view = new Twig_Environment($loader);
-
-        $this->log = new Logger('bookstore');
-        $logFile = $this->config->get('log');
-        $this->log->pushHandler(new StreamHandler($logFile, Logger::DEBUG));    
+        
+        $this->db = $di->get('PDO');
+        $this->config = $di->get('Utils\Config');
+        $this->view = $di->get('Twig_Environment');
+        $this->log = $di->get('Logger');
+        
+        $this->customerId = $_COOKIE['id'];
     }
 
     /**

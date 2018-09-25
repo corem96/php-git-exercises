@@ -11,9 +11,11 @@ class Router {
         'number' => '\d+',
         'string' => '\w'
     ];
+    protected $di;
     
-    public function __construct()
+    public function __construct(DependencyInjector $depinject)
     {
+        $this->di = $depinject;
         $json = file_get_contents(__DIR__ . '/../../config/routes.json');
         $this->routeMap = json_decode($json, true);
     }
@@ -30,7 +32,7 @@ class Router {
             }
         }
         
-        $errorController = new ErrorController($request);
+        $errorController = new ErrorController($this->di, $request);
         
         return $errorController->notFound($request->getPath());
     }
@@ -65,14 +67,14 @@ class Router {
     private function executeController(string $route, string $path, array $info, Request $request) : string
     {
         $controllerName = 'Bookstore\Controllers\\' . $info['controller'] . 'Controller';
-        $controller = new $controllerName($request);
+        $controller = new $controllerName($this->di, $request);
 
         if (isset($info['login']) && $info['login']) {
             if($request->getCookies()->has('user')){
                 $customerId = $request->getCookies()->get('user');
                 $controller->setCustomerId($customerId);
             } else {
-                $errorController = new CustomerController($request);
+                $errorController = new CustomerController($this->di, $request);
                 return $errorController->login();
             }
         }
