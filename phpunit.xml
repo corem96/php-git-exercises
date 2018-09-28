@@ -8,16 +8,16 @@
             proccessIsolation="false"
             stopOnFailure="false"
             syntaxCheck="false"
-            bootstrap="./vendor/autoload.php"
+            bootstrap=".\vendor\autoload.php"
     >
     <testsuites>
         <testsuite name="Bookstore Test Suite">
-            <directory>./test</directory>
+            <directory>.\tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>.\src</directory>
         </whitelist>
     </filter>
 </phpunit>
