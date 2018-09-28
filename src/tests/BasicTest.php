@@ -3,16 +3,16 @@
 namespace Bookstore\Tests\Domain\Customer;
 
 use Bookstore\Domain\Customer\Basic;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class BasicTest extends PHPUnit_Framework_TestCase {
+final class BasicTest extends TestCase {
 
     /**
      * Test for Basic customer
      *
      * @test
      */
-    public function testAmountToBorrow()
+    public function testAmountToBorrow() : void
     {
         $customer = new Basic(1, 'han', 'solo', 'hansolo@mail.com');
 
