@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
     <phpunit backupGlobals="false"
             backupStaticAttributes="false"
-            colors="false"
+            colors="always"
             convertErrorsToExceptions="true"
             convertNoticesToExceptions="true"
             convertWarningstoExceptions="true"
@@ -12,7 +12,7 @@
     >
     <testsuites>
         <testsuite name="Bookstore Test Suite">
-            <directory>.\tests</directory>
+            <directory phpVersion="7.2.2">.\Tests</directory>
         </testsuite>
     </testsuites>
     <filter>
