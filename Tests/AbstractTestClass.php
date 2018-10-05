@@ -2,9 +2,10 @@
 
 namespace Bookstore\Tests;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstracTestClass extends TestCase
+abstract class AbstractTestClass extends TestCase
 {
     protected function mock(string $className)
     {

@@ -14,7 +14,10 @@ namespace Bookstore\Tests\Controllers;
 
 use Bookstore\Controllers\BookController;
 use Bookstore\Core\Request;
+use Bookstore\Exceptions\NotFoundException;
+use Bookstore\Models\BookModel;
 use Bookstore\Tests\ControllerTestCase;
+use Twig_Template;
 
 /**
  * Class for testing BookController
@@ -38,7 +41,7 @@ class BookControllerTest extends ControllerTestCase
     private function _getController(Request $request = null): BookController
     {
         if ($request === null) {
-            $request = $this->mockUp('Core\Request');
+            $request = $this->mock('Core\Request');
         }
         return new BookController($this->di, $request);
     }
@@ -54,7 +57,7 @@ class BookControllerTest extends ControllerTestCase
      */
     public function testBookNotFound()
     {
-        $bookModel = $this->mockUp(BookModel::class);
+        $bookModel = $this->mock(BookModel::class);
         $bookModel
             ->expects($this->once())
             ->method('get')
@@ -77,7 +80,7 @@ class BookControllerTest extends ControllerTestCase
             ->with('error.twig')
             ->will($this->returnValue($template));
 
-        $resutl = $this->getController()->borrow();
+        $resutl = $this->_getController()->borrow(123);
 
         $this->assertSame(
             $result,
