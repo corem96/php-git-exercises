@@ -16,6 +16,6 @@ class DependencyInjector {
     if(isset($this->dependencies[$name])) {
       return $this->dependencies[$name];
     }
-    throw new NotFoundException($name . 'Dependency not found');
+    throw new NotFoundException($name . ' Dependency not found');
   }
 }

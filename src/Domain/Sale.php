@@ -4,7 +4,7 @@ namespace Bookstore\Domain;
 class Sale {
   private $id;
   private $customer_id;
-  private $books;
+  private $books = [];
   private $date;
   
   /**
@@ -18,13 +18,12 @@ class Sale {
   }
   
   /**
-   * Set book value
+   * Returns value of customer ID
    *
-   * @param array $books
-   * @return void
+   * @return integer
    */
-  public function setBooks(array $books) {
-    $this->books = $books;
+  public function getCustomerId(): int {
+    return $this->customer_id;
   }
   
   /**
@@ -37,12 +36,27 @@ class Sale {
   }
   
   /**
-   * Returns value of customer ID
+   * Increases a book quantity by a given amount when the book ID exists
    *
-   * @return integer
+   * @param integer $bookId
+   * @param integer $amount
+   * @return void
    */
-  public function getCustomerId(): int {
-    return $this->customer_id;
+  public function addBook(int $bookId, int $amount = 1) {
+    if (!isset($this->books[$bookId])) {
+      $this->books[$bookId] = 0;
+    }
+    $this->books[$bookId] += $amount;
+  }
+  
+  /**
+   * Set book value
+   *
+   * @param array $books
+   * @return void
+   */
+  public function setBooks(array $books) {
+    $this->books = $books;
   }
   
   /**
@@ -61,19 +75,5 @@ class Sale {
    */
   public function getDate(): string {
     return $this->date;
-  }
-  
-  /**
-   * Increases a book quantity by a given amount when the book ID exists
-   *
-   * @param integer $bookId
-   * @param integer $amount
-   * @return void
-   */
-  public function addBook(int $bookId, int $amount = 1) {
-    if (!isset($this->books[$bookId])) {
-      $this->books[$bookId] = 0;
-    }
-    $this->books[$bookId] += $amount;
   }
 }
